@@ -133,3 +133,63 @@ document.querySelectorAll('.service-card, .portfolio-item, .testimonial').forEac
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
+/*Fireworks Animation
+        const fireworksContainer = document.getElementById('fireworks');
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff1493'];
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.bottom = '0';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            fireworksContainer.appendChild(firework);
+
+            setTimeout(() => {
+                createExplosion(firework.offsetLeft, firework.offsetTop);
+                firework.remove();
+            }, 1000);
+        }
+
+        function createExplosion(x, y) {
+            const particleCount = 30;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = color;
+
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                particle.style.setProperty('--tx', vx + 'px');
+                particle.style.setProperty('--ty', vy + 'px');
+                
+                const keyframes = `
+                    @keyframes explode-${i}-${Date.now()} {
+                        to {
+                            transform: translate(${vx}px, ${vy}px) scale(0);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+                
+                particle.style.animation = `explode-${i}-${Date.now()} 1s ease-out forwards`;
+
+                fireworksContainer.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                    style.remove();
+                }, 1000);
+            }
+        };

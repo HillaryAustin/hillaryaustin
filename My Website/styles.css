@@ -133,8 +133,11 @@ h3 {
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                    url('austin.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 .hero-container {
